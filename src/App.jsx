@@ -86,22 +86,23 @@ export default function App() {
     return () => unsub();
   }, [user]);
 
-  // ── Load all teams for dev dropdown ─────────────────────────────
+  // ── Load all teams for dev dropdown (always active) ─────────────
   useEffect(() => {
-    if (view !== "devJoin") return;
     const unsub = onValue(ref(db, "teams"), (snap) => {
       const data = snap.val() || {};
-      // Flatten: { smId: { teamId: { name, members } } } → { teamId: { name, smId } }
       const flat = {};
       Object.entries(data).forEach(([smId, teams]) => {
+        if (!teams) return;
         Object.entries(teams).forEach(([teamId, team]) => {
-          flat[teamId] = { ...team, smId };
+          if (team && team.name) {
+            flat[teamId] = { ...team, smId };
+          }
         });
       });
       setAllTeams(flat);
     });
     return () => unsub();
-  }, [view]);
+  }, []);
 
   // ── Load session for selected team ──────────────────────────────
   useEffect(() => {
