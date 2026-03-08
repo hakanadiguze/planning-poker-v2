@@ -3,13 +3,13 @@ import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCe_dC3LAtGCBFW8CQh1s8eAHncOid4jbs",
-  authDomain: "planning-poker-9bb67.firebaseapp.com",
-  databaseURL: "https://planning-poker-9bb67-default-rtdb.firebaseio.com",
-  projectId: "planning-poker-9bb67",
-  storageBucket: "planning-poker-9bb67.firebasestorage.app",
-  messagingSenderId: "208415095607",
-  appId: "1:208415095607:web:8b584c2d1f1292f07db8b2"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
